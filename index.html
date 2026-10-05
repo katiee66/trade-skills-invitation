@@ -1,0 +1,1615 @@
+🔵 MAKER
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script>
+    /* Apply saved theme before first paint */
+    (function () {
+      try {
+        if (localStorage.getItem("academy-theme") === "light") {
+          document.documentElement.classList.add("light");
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Find Your Next Skill | 90-Minute Trade Tasters</title>
+  <meta name="description" content="Try electrical, heat pump and carpentry skills in 90-minute hands-on evening sessions with working tradespeople." />
+
+  <meta property="og:title" content="Find Your Next Skill" />
+  <meta property="og:description" content="Don't choose a trade from a brochure. Try it. Three hands-on 90-minute career test-drives." />
+  <meta property="og:type" content="website" />
+  <!-- og:image placeholder: create a 1200x630 launch image -->
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Find Your Next Skill" />
+  <meta name="twitter:description" content="90 minutes. Real tools. A working tradesperson. Find out whether the work is for you." />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #020a18;
+      --bg-grad: linear-gradient(170deg, #020a18, #041028 40%, #06142e 70%, #020a18);
+      --surface: rgba(8,24,56,0.85);
+      --surface-solid: #081838;
+      --surface-soft: rgba(10, 31, 68, .55);
+      --border: rgba(0,170,255,0.12);
+      --border-strong: rgba(0,229,255,.30);
+      --text: #d0e0f0;
+      --text-bright: #e8f0ff;
+      --text-dim: #6888aa;
+      --neon: #00aaff;
+      --cyan: #00e5ff;
+      --green: #00ff88;
+      --amber: #ffaa00;
+      --header: rgba(2,10,24,.72);
+      --shadow: 0 24px 80px rgba(0,0,0,.30);
+      --grid: rgba(255,255,255,.03);
+      --max: 880px;
+    }
+
+    html.light {
+      --bg: #f5f9ff;
+      --bg-grad: linear-gradient(170deg, #f8fbff, #eef6ff 40%, #f6fbff 70%, #ffffff);
+      --surface: rgba(255,255,255,.90);
+      --surface-solid: #ffffff;
+      --surface-soft: rgba(238,247,255,.8);
+      --border: rgba(0,95,170,.13);
+      --border-strong: rgba(0,135,190,.28);
+      --text: #29445d;
+      --text-bright: #071b2f;
+      --text-dim: #607b92;
+      --neon: #007ac2;
+      --cyan: #008ba8;
+      --green: #008f58;
+      --amber: #b56d00;
+      --header: rgba(248,251,255,.78);
+      --shadow: 0 24px 70px rgba(21,73,110,.12);
+      --grid: rgba(0,80,140,.04);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg-grad);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -4;
+      pointer-events: none;
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .orb {
+      position: fixed;
+      z-index: -3;
+      width: 430px;
+      height: 430px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: .12;
+      pointer-events: none;
+    }
+
+    .orb-one {
+      top: 12%;
+      left: calc(50% - 780px);
+      background: var(--neon);
+      animation: orbitOne 18s ease-in-out infinite alternate;
+    }
+
+    .orb-two {
+      right: calc(50% - 800px);
+      top: 52%;
+      background: var(--green);
+      animation: orbitTwo 22s ease-in-out infinite alternate;
+    }
+
+    @keyframes orbitOne {
+      from { transform: translate(0,0); }
+      to { transform: translate(120px,180px); }
+    }
+
+    @keyframes orbitTwo {
+      from { transform: translate(0,0); }
+      to { transform: translate(-130px,-170px); }
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: var(--header);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--text-bright);
+      font-weight: 800;
+      letter-spacing: -.03em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--surface);
+      box-shadow: inset 0 0 22px rgba(0,229,255,.08);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--text);
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .theme-toggle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-bright);
+      display: grid;
+      place-items: center;
+    }
+
+    .sun { display: none; }
+    html.light .sun { display: inline; }
+    html.light .moon { display: none; }
+
+    .hero {
+      padding: 110px 0 90px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: rgba(0,170,255,.06);
+      color: var(--cyan);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 14px var(--green);
+    }
+
+    h1, h2, h3 {
+      color: var(--text-bright);
+      line-height: 1.08;
+      letter-spacing: -.045em;
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin: 26px auto 24px;
+      font-size: clamp(3rem, 8vw, 6.2rem);
+      font-weight: 900;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, var(--cyan), var(--neon), var(--green));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--text);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+    }
+
+    .hero-copy strong {
+      color: var(--text-bright);
+    }
+
+    .hero-actions {
+      margin-top: 34px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 14px 20px;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #001522;
+      background: linear-gradient(90deg, var(--cyan), var(--green));
+      box-shadow: 0 12px 38px rgba(0,229,255,.15);
+    }
+
+    html.light .btn-primary {
+      color: #fff;
+    }
+
+    .btn-secondary {
+      color: var(--text-bright);
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+    }
+
+    .micro {
+      margin-top: 15px;
+      color: var(--text-dim);
+      font-size: .82rem;
+    }
+
+    section {
+      padding: 78px 0;
+    }
+
+    .section-head {
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      margin-bottom: 10px;
+      color: var(--cyan);
+      font-size: .75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-size: clamp(2rem, 5vw, 3.3rem);
+    }
+
+    .section-intro {
+      max-width: 670px;
+      margin: 0;
+      color: var(--text-dim);
+      font-size: 1.03rem;
+    }
+
+    .reasons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .reason,
+    .card,
+    .quote-card,
+    .faq-item,
+    .quiz-shell {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .reason {
+      padding: 25px;
+      border-radius: 18px;
+    }
+
+    .reason-number {
+      color: var(--cyan);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+    }
+
+    .reason h3 {
+      margin: 14px 0 9px;
+      font-size: 1.1rem;
+      letter-spacing: -.02em;
+    }
+
+    .reason p {
+      margin: 0;
+      color: var(--text-dim);
+      font-size: .9rem;
+    }
+
+    .trade-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      border-radius: 22px;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent);
+    }
+
+    .trade-card {
+      --accent: var(--cyan);
+    }
+
+    .trade-card.heat {
+      --accent: var(--amber);
+    }
+
+    .trade-card.carpentry {
+      --accent: var(--green);
+    }
+
+    .trade-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .trade-label {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-size: .72rem;
+      letter-spacing: .13em;
+      font-weight: 900;
+    }
+
+    .trade-card h3 {
+      margin: 7px 0 6px;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+    }
+
+    .trade-question {
+      margin: 0;
+      color: var(--text-dim);
+    }
+
+    .price {
+      flex: 0 0 auto;
+      text-align: right;
+    }
+
+    .price strong {
+      display: block;
+      color: var(--text-bright);
+      font-size: 1.55rem;
+    }
+
+    .price span {
+      color: var(--text-dim);
+      font-size: .75rem;
+    }
+
+    .challenge {
+      margin: 25px 0;
+      padding: 18px;
+      border-radius: 14px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+    }
+
+    .challenge-label {
+      color: var(--accent);
+      font-size: .72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .challenge strong {
+      display: block;
+      margin-top: 4px;
+      color: var(--text-bright);
+      font-size: 1.05rem;
+    }
+
+    .session-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .pill {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: var(--text-dim);
+      font-size: .72rem;
+      font-weight: 700;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 0;
+    }
+
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 82px 1fr;
+      gap: 15px;
+      padding: 12px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .timeline-row:first-child {
+      border-top: 0;
+    }
+
+    .timeline-time {
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .timeline-copy {
+      color: var(--text-dim);
+      font-size: .88rem;
+    }
+
+    .timeline-copy strong {
+      color: var(--text-bright);
+    }
+
+    .promise {
+      margin-top: 22px;
+      color: var(--text-bright);
+      font-weight: 700;
+    }
+
+    .quote-card {
+      border-radius: 22px;
+      padding: 34px;
+    }
+
+    blockquote {
+      margin: 0;
+      color: var(--text-bright);
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      line-height: 1.4;
+      font-weight: 700;
+      letter-spacing: -.025em;
+    }
+
+    .quote-context {
+      margin-top: 20px;
+      color: var(--text-dim);
+      font-size: .85rem;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .faq-item {
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: var(--text-bright);
+      text-align: left;
+      padding: 19px 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-weight: 800;
+    }
+
+    .faq-plus {
+      color: var(--cyan);
+      transition: transform .2s ease;
+    }
+
+    .faq-item.open .faq-plus {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 20px 20px;
+      color: var(--text-dim);
+      font-size: .9rem;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    .qualifier {
+      padding-top: 100px;
+    }
+
+    .quiz-shell {
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .quiz-top {
+      padding: 22px 26px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .quiz-progress-label {
+      color: var(--text-dim);
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+    .progress-track {
+      width: 150px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--border);
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 20%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--cyan), var(--green));
+      transition: width .3s ease;
+    }
+
+    .quiz-body {
+      padding: clamp(25px, 5vw, 46px);
+    }
+
+    .question-number {
+      color: var(--cyan);
+      font-size: .74rem;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: .1em;
+    }
+
+    .question-title {
+      margin: 9px 0 25px;
+      font-size: clamp(1.55rem, 4vw, 2.2rem);
+    }
+
+    .answers {
+      display: grid;
+      gap: 11px;
+    }
+
+    .answer {
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 13px;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      color: var(--text);
+      text-align: left;
+      transition: border-color .2s, transform .2s, background .2s;
+    }
+
+    .answer:hover {
+      border-color: var(--border-strong);
+      transform: translateX(3px);
+    }
+
+    .answer strong {
+      color: var(--text-bright);
+    }
+
+    .quiz-back {
+      margin-top: 20px;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--text-dim);
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+    .results {
+      display: none;
+    }
+
+    .results.visible {
+      display: block;
+    }
+
+    .result-header {
+      margin-bottom: 28px;
+    }
+
+    .result-header h3 {
+      margin: 8px 0;
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    .result-header p {
+      color: var(--text-dim);
+      margin: 0;
+    }
+
+    .rankings {
+      display: grid;
+      gap: 12px;
+    }
+
+    .ranking {
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+    }
+
+    .ranking.primary {
+      border-color: var(--border-strong);
+      box-shadow: inset 0 0 30px rgba(0,229,255,.04);
+    }
+
+    .ranking-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .rank {
+      color: var(--cyan);
+      font-size: .72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .match {
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .ranking h4 {
+      color: var(--text-bright);
+      margin: 5px 0 7px;
+      font-size: 1.25rem;
+    }
+
+    .ranking p {
+      margin: 0;
+      color: var(--text-dim);
+      font-size: .88rem;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 25px;
+    }
+
+    .restart {
+      margin-top: 18px;
+      border: 0;
+      background: transparent;
+      color: var(--text-dim);
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+    .bundle {
+      margin-top: 22px;
+      border: 1px solid rgba(0,255,136,.24);
+      border-radius: 18px;
+      padding: 22px;
+      background: rgba(0,255,136,.045);
+    }
+
+    .bundle-label {
+      color: var(--green);
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .bundle h4 {
+      color: var(--text-bright);
+      margin: 7px 0;
+      font-size: 1.25rem;
+    }
+
+    .bundle p {
+      color: var(--text-dim);
+      margin: 0 0 15px;
+      font-size: .88rem;
+    }
+
+    footer {
+      margin-top: 80px;
+      padding: 35px 0 50px;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: .8rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        padding: 80px 0 65px;
+      }
+
+      .reasons {
+        grid-template-columns: 1fr;
+      }
+
+      .trade-top {
+        display: block;
+      }
+
+      .price {
+        margin-top: 15px;
+        text-align: left;
+      }
+
+      .nav-link {
+        display: none;
+      }
+
+      .timeline-row {
+        grid-template-columns: 65px 1fr;
+      }
+
+      .quiz-top {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .progress-track {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-mark">🛠️</div>
+        <span>Find Your Next Skill</span>
+      </div>
+
+      <div class="nav-actions">
+        <a class="nav-link" href="#sessions">Sessions</a>
+        <a class="nav-link" href="#qualifier">Find my skill</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+          <span class="moon">☾</span>
+          <span class="sun">☀</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <section class="hero">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          90-minute trade tasters
+        </div>
+
+        <h1>
+          Don't choose a trade<br>
+          from a brochure.<br>
+          <span class="gradient-text">Try it.</span>
+        </h1>
+
+        <p class="hero-copy">
+          <strong>Real tools. Real tasks. Real tradespeople.</strong>
+          Spend 90 minutes discovering what skilled work actually feels like
+          before committing to a course, apprenticeship or career change.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#qualifier" class="btn btn-primary">Find your next skill →</a>
+          <a href="#sessions" class="btn btn-secondary">Explore the tasters</a>
+        </div>
+
+        <div class="micro">5 questions · 60 seconds · 3 personalised recommendations</div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-kicker">A career test-drive</div>
+          <h2>90 minutes of doing.<br>Not weeks of wondering.</h2>
+        </div>
+
+        <div class="reasons">
+          <article class="reason">
+            <span class="reason-number">01</span>
+            <h3>Try before you commit</h3>
+            <p>Experience the work before deciding whether a longer training route is right for you.</p>
+          </article>
+
+          <article class="reason">
+            <span class="reason-number">02</span>
+            <h3>Learn by doing</h3>
+            <p>Get your hands on beginner-appropriate tools and complete a real practical challenge.</p>
+          </article>
+
+          <article class="reason">
+            <span class="reason-number">03</span>
+            <h3>Ask someone who knows</h3>
+            <p>Every session is led by a working tradesperson who can tell you what the job is actually like.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="sessions">
+        <div class="section-head">
+          <div class="section-kicker">Three ways in</div>
+          <h2>Which kind of work feels like you?</h2>
+          <p class="section-intro">
+            Each experience follows the same rhythm: meet the tradesperson,
+            learn the essentials, do the task, test your work and discover the next step.
+          </p>
+        </div>
+
+        <div class="trade-grid">
+
+          <article class="card trade-card">
+            <div class="trade-top">
+              <div>
+                <div class="trade-label">⚡ Electrical · EV · Renewables</div>
+                <h3>SWITCH ON</h3>
+                <p class="trade-question">Could you see yourself working with electricity?</p>
+              </div>
+              <div class="price">
+                <strong>€45</strong>
+                <span>90 minutes</span>
+              </div>
+            </div>
+
+            <div class="challenge">
+              <span class="challenge-label">Your challenge</span>
+              <strong>Can you make the circuit work?</strong>
+            </div>
+
+            <div class="session-meta">
+              <span class="pill">Beginner</span>
+              <span class="pill">Hands-on</span>
+              <span class="pill">No experience needed</span>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline-row">
+                <div class="timeline-time">0–10 min</div>
+                <div class="timeline-copy"><strong>Meet the electrician.</strong> Hear the real career story and where electrical skills can lead.</div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">10–20</div>
+                <div class="timeline-copy"><strong>Know your tools.</strong> Meet cable, switches, connectors, testers and safe training equipment.</div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">20–55</div>
+                <div class="timeline-copy"><strong>Build it.</strong> Work on an isolated training board and create a simple low-voltage switch-and-light circuit.</div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">55–65</div>
+                <div class="timeline-copy"><strong>Switch it on.</strong> Test your work and troubleshoot it if it doesn't work first time.</div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">65–75</div>
+                <div class="timeline-copy"><strong>See where it leads.</strong> Connect the fundamentals to homes, EV charging, solar and heat pumps.</div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">75–90</div>
+                <div class="timeline-copy"><strong>Could you do this?</strong> Get the reality of the career and your possible next steps.</div>
+              </div>
+            </div>
+
+            <p class="promise">Walk in having never wired a circuit. Walk out having made one work.</p>
+          </article>
+
+          <article class="card trade-card heat">
+            <div class="trade-top">
+              <div>
+                <div class="trade-label">♨ Heat Pumps · Home Energy</div>
+                <h3>HEAT THE FUTURE</h3>
+                <p class="trade-question">Could you help transform how Ireland heats its homes?</p>
+              </div>
+              <div class="price">
+                <strong>€45</strong>
+                <span>90 minutes</span>
+              </div>
+            </div>
+
+            <div class="challenge">
+              <span class="challenge-label">Your challenge</span>
+              <strong>Can you figure out how tomorrow's homes stay warm?</strong>
+            </div>
+
+            <div class="session-meta">
+              <span class="pill">Beginner</span>
+              <span class="pill">Hands-on</span>
+              <span class="pill">Problem solving</span>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline-row">
+                <div class="timeline-time">0–10 min</div>
+                <div class="timeline-copy"><strong>Meet the technician.</strong> Discover what the work looks like in the real world.</div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">10–20</div>
+                <div class="timeline-copy"><strong>Solve the mystery.</strong> How does a machine take heat from outside and use it inside?</div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">20–35</div>
+                <div class="timeline-copy"><strong>Meet the system.</strong> Identify the key components on a demonstration rig.</div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">35–60</div>
+                <div class="timeline-copy"><strong>Get hands-on.</strong> Trace the system and understand flow, return and heat transfer.</div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">60–70</div>
+                <div class="timeline-copy"><strong>Diagnose it.</strong> Work out what's wrong in a simulated fault challenge.</div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">70–90</div>
+                <div class="timeline-copy"><strong>See the opportunity.</strong> Explore home retrofit and the routes into this skill.</div>
+              </div>
+            </div>
+
+            <p class="promise">Everyone talks about heat pumps. Spend 90 minutes discovering how one actually works.</p>
+          </article>
+
+          <article class="card trade-card carpentry">
+            <div class="trade-top">
+              <div>
+                <div class="trade-label">🪚 Carpentry · Modern Construction</div>
+                <h3>MAKE IT</h3>
+                <p class="trade-question">Could you build for a living?</p>
+              </div>
+              <div class="price">
+                <strong>€45</strong>
+                <span>90 minutes</span>
+              </div>
+            </div>
+
+            <div class="challenge">
+              <span class="challenge-label">Your challenge</span>
+              <strong>Can you turn this into that?</strong>
+            </div>
+
+            <div class="session-meta">
+              <span class="pill">Beginner</span>
+              <span class="pill">Hands-on</span>
+              <span class="pill">Make something real</span>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline-row">
+                <div class="timeline-time">0–10 min</div>
+                <div class="timeline-copy"><strong>Meet the carpenter.</strong> Hear how they started and what they build today.</div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">10–20</div>
+                <div class="timeline-copy"><strong>Tools in your hands.</strong> Learn accurate measuring, marking and safe tool use.</div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">20–30</div>
+                <div class="timeline-copy"><strong>Get the brief.</strong> Receive your timber and simple build specification.</div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">30–65</div>
+                <div class="timeline-copy"><strong>Make it.</strong> Measure, mark, cut and create a basic joint or component.</div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">65–80</div>
+                <div class="timeline-copy"><strong>Build and test.</strong> Assemble it, then check accuracy, strength and squareness.</div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">80–90</div>
+                <div class="timeline-copy"><strong>See what's next.</strong> Explore timber-frame housing, retrofit and career routes.</div>
+              </div>
+            </div>
+
+            <p class="promise">Raw timber in. Something you've built out.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <div class="quote-card">
+          <div class="section-kicker">Why this exists</div>
+          <blockquote>
+            “I really need a career change only issue is I have no idea how to actually change especially into trades.”
+          </blockquote>
+          <div class="quote-context">
+            Career-change discussion identified in the research. The Academy is designed to make the first step smaller.
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-kicker">Before you book</div>
+          <h2>Good questions.</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question">
+              I've never used these tools before. Is that a problem?
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-answer">
+              No. These are beginner taster experiences. They're designed to help you discover whether you enjoy the work, not test what you already know.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Will 90 minutes qualify me for a trade?
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-answer">
+              No. A taster is a career test-drive, not a qualification. You'll leave with a clearer idea of whether you want to explore formal training, an apprenticeship or another session.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Is this only for school-leavers?
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-answer">
+              No. The experiences are designed for career-curious adults, mid-career switchers, returning emigrants, parents returning to work and school-leavers exploring their options.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              What happens during the session?
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-answer">
+              Every taster follows the same basic rhythm: meet a working tradesperson, learn the essentials, complete a supervised practical challenge, test your work and discover possible next steps.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              What if I have no idea which skill to try?
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-answer">
+              That's exactly what the qualifier below is for. Answer five questions about how you like to work and we'll rank all three experiences for you.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="qualifier" id="qualifier">
+        <div class="section-head">
+          <div class="section-kicker">60-second qualifier</div>
+          <h2>Find your next skill.</h2>
+          <p class="section-intro">
+            Don't tell us which trade you think you want. Tell us how you like to work.
+            We'll rank all three experiences for you.
+          </p>
+        </div>
+
+        <div class="quiz-shell">
+          <div class="quiz-top">
+            <span class="quiz-progress-label" id="progressLabel">Question 1 of 5</span>
+            <div class="progress-track">
+              <div class="progress-bar" id="progressBar"></div>
+            </div>
+          </div>
+
+          <div class="quiz-body">
+            <div id="questionView">
+              <div class="question-number" id="questionNumber">Question 01</div>
+              <h3 class="question-title" id="questionTitle"></h3>
+              <div class="answers" id="answers"></div>
+              <button class="quiz-back" id="backButton" type="button">← Previous question</button>
+            </div>
+
+            <div class="results" id="resultsView">
+              <div class="result-header">
+                <div class="section-kicker">Your skill matches</div>
+                <h3 id="resultHeadline">Your #1 match</h3>
+                <p id="resultIntro"></p>
+              </div>
+
+              <div class="rankings" id="rankings"></div>
+
+              <div class="bundle">
+                <div class="bundle-label">Still deciding?</div>
+                <h4>Try all three — €115</h4>
+                <p>
+                  Three evenings. Three completely different kinds of skilled work.
+                  A 4½-hour career experiment before you make a much bigger commitment.
+                </p>
+                <a href="#sessions" class="btn btn-secondary">Explore all three</a>
+              </div>
+
+              <div class="result-actions">
+                <a href="#sessions" class="btn btn-primary" id="primaryResultCTA">
+                  Try your #1 skill — €45 →
+                </a>
+              </div>
+
+              <button class="restart" id="restartButton" type="button">↻ Start again</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><strong>Find Your Next Skill</strong> · 90-minute trade tasters</div>
+      <div>Meet · Learn · Do · Test · Discover</div>
+    </div>
+  </footer>
+
+  <script>
+    /* ---------------------------
+       Theme
+    ---------------------------- */
+
+    const themeToggle = document.getElementById("themeToggle");
+
+    themeToggle.addEventListener("click", () => {
+      document.documentElement.classList.toggle("light");
+      const theme = document.documentElement.classList.contains("light")
+        ? "light"
+        : "dark";
+
+      try {
+        localStorage.setItem("academy-theme", theme);
+      } catch (e) {}
+    });
+
+
+    /* ---------------------------
+       FAQ
+    ---------------------------- */
+
+    document.querySelectorAll(".faq-question").forEach(button => {
+      button.addEventListener("click", () => {
+        const item = button.parentElement;
+        item.classList.toggle("open");
+      });
+    });
+
+
+    /* ---------------------------
+       Qualifier
+    ---------------------------- */
+
+    const trades = {
+      electrical: {
+        name: "SWITCH ON",
+        subtitle: "Electrical · EV · Renewables",
+        description:
+          "You seem drawn to precision, troubleshooting and making technical systems work. Electrical is your strongest place to start.",
+        icon: "⚡"
+      },
+
+      heat: {
+        name: "HEAT THE FUTURE",
+        subtitle: "Heat Pumps · Home Energy",
+        description:
+          "You seem to enjoy understanding whole systems, diagnosing problems and making things perform better. Home energy could suit you.",
+        icon: "♨️"
+      },
+
+      carpentry: {
+        name: "MAKE IT",
+        subtitle: "Carpentry · Modern Construction",
+        description:
+          "You seem motivated by tangible results, practical accuracy and making something you can see and touch. Carpentry is worth trying.",
+        icon: "🪚"
+      }
+    };
+
+    /*
+      Each answer distributes points across all three trades.
+      This creates meaningful ranking differences rather than
+      a simple fit / not-fit result.
+    */
+
+    const questions = [
+      {
+        title: "When something stops working, what sounds most satisfying?",
+        answers: [
+          {
+            text: "<strong>Trace the problem</strong> until I find exactly what's wrong.",
+            scores: { electrical: 5, heat: 3, carpentry: 1 }
+          },
+          {
+            text: "<strong>Understand the whole system</strong> and work out what isn't performing.",
+            scores: { electrical: 3, heat: 5, carpentry: 1 }
+          },
+          {
+            text: "<strong>Fix or rebuild the physical thing</strong> with my own hands.",
+            scores: { electrical: 1, heat: 2, carpentry: 5 }
+          }
+        ]
+      },
+
+      {
+        title: "Which kind of challenge would you most like to tackle?",
+        answers: [
+          {
+            text: "Make a <strong>circuit work correctly</strong>.",
+            scores: { electrical: 5, heat: 2, carpentry: 1 }
+          },
+          {
+            text: "Work out why a <strong>home isn't heating efficiently</strong>.",
+            scores: { electrical: 2, heat: 5, carpentry: 1 }
+          },
+          {
+            text: "Build something <strong>accurately from a specification</strong>.",
+            scores: { electrical: 1, heat: 1, carpentry: 5 }
+          }
+        ]
+      },
+
+      {
+        title: "At the end of a good day's work, what would satisfy you most?",
+        answers: [
+          {
+            text: "Knowing a technical system <strong>works exactly as it should</strong>.",
+            scores: { electrical: 5, heat: 3, carpentry: 2 }
+          },
+          {
+            text: "Knowing I've made a building <strong>perform better</strong>.",
+            scores: { electrical: 2, heat: 5, carpentry: 2 }
+          },
+          {
+            text: "Being able to point at something and say <strong>“I made that.”</strong>",
+            scores: { electrical: 1, heat: 1, carpentry: 5 }
+          }
+        ]
+      },
+
+      {
+        title: "Which future sounds most interesting to you?",
+        answers: [
+          {
+            text: "<strong>Electrified homes, EV charging and renewable power.</strong>",
+            scores: { electrical: 5, heat: 3, carpentry: 1 }
+          },
+          {
+            text: "<strong>Warmer, lower-energy homes and retrofit.</strong>",
+            scores: { electrical: 2, heat: 5, carpentry: 2 }
+          },
+          {
+            text: "<strong>Building homes using modern timber and construction methods.</strong>",
+            scores: { electrical: 1, heat: 1, carpentry: 5 }
+          }
+        ]
+      },
+
+      {
+        title: "What do you most want to discover from a 90-minute taster?",
+        answers: [
+          {
+            text: "Whether I enjoy <strong>technical troubleshooting and precision</strong>.",
+            scores: { electrical: 5, heat: 3, carpentry: 1 }
+          },
+          {
+            text: "Whether I enjoy <strong>mechanical systems and problem-solving</strong>.",
+            scores: { electrical: 2, heat: 5, carpentry: 1 }
+          },
+          {
+            text: "Whether I enjoy <strong>tools, materials and physical making</strong>.",
+            scores: { electrical: 1, heat: 1, carpentry: 5 }
+          },
+          {
+            text: "I'm genuinely unsure — <strong>I want to try different kinds of work.</strong>",
+            scores: { electrical: 3, heat: 3, carpentry: 3 }
+          }
+        ]
+      }
+    ];
+
+    let currentQuestion = 0;
+    let selections = [];
+
+    const questionView = document.getElementById("questionView");
+    const resultsView = document.getElementById("resultsView");
+    const questionNumber = document.getElementById("questionNumber");
+    const questionTitle = document.getElementById("questionTitle");
+    const answersElement = document.getElementById("answers");
+    const progressLabel = document.getElementById("progressLabel");
+    const progressBar = document.getElementById("progressBar");
+    const backButton = document.getElementById("backButton");
+    const rankingsElement = document.getElementById("rankings");
+    const resultHeadline = document.getElementById("resultHeadline");
+    const resultIntro = document.getElementById("resultIntro");
+    const restartButton = document.getElementById("restartButton");
+
+    function renderQuestion() {
+      const question = questions[currentQuestion];
+
+      questionNumber.textContent =
+        "Question " + String(currentQuestion + 1).padStart(2, "0");
+
+      questionTitle.textContent = question.title;
+
+      progressLabel.textContent =
+        `Question ${currentQuestion + 1} of ${questions.length}`;
+
+      progressBar.style.width =
+        `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+      answersElement.innerHTML = "";
+
+      question.answers.forEach((answer, index) => {
+        const button = document.createElement("button");
+        button.className = "answer";
+        button.type = "button";
+        button.innerHTML = answer.text;
+
+        button.addEventListener("click", () => {
+          selections[currentQuestion] = index;
+
+          if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            renderQuestion();
+          } else {
+            showResults();
+          }
+        });
+
+        answersElement.appendChild(button);
+      });
+
+      backButton.style.visibility =
+        currentQuestion === 0 ? "hidden" : "visible";
+    }
+
+    backButton.addEventListener("click", () => {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        renderQuestion();
+      }
+    });
+
+    function calculateScores() {
+      const totals = {
+        electrical: 0,
+        heat: 0,
+        carpentry: 0
+      };
+
+      selections.forEach((answerIndex, questionIndex) => {
+        const selected =
+          questions[questionIndex].answers[answerIndex];
+
+        Object.keys(totals).forEach(trade => {
+          totals[trade] += selected.scores[trade];
+        });
+      });
+
+      return totals;
+    }
+
+    function calculatePercentages(scores) {
+      const values = Object.values(scores);
+      const max = Math.max(...values);
+      const min = Math.min(...values);
+      const spread = Math.max(max - min, 1);
+
+      const percentages = {};
+
+      Object.entries(scores).forEach(([trade, score]) => {
+        /*
+          Results are intentionally displayed as relative
+          affinity scores rather than scientific aptitude scores.
+        */
+        percentages[trade] =
+          Math.round(55 + ((score - min) / spread) * 37);
+      });
+
+      return percentages;
+    }
+
+    function showResults() {
+      const scores = calculateScores();
+      const percentages = calculatePercentages(scores);
+
+      const ranking = Object.keys(scores).sort((a, b) => {
+        if (scores[b] === scores[a]) {
+          return ["electrical", "heat", "carpentry"].indexOf(a) -
+                 ["electrical", "heat", "carpentry"].indexOf(b);
+        }
+        return scores[b] - scores[a];
+      });
+
+      const winner = ranking[0];
+
+      questionView.style.display = "none";
+      resultsView.classList.add("visible");
+
+      progressLabel.textContent = "Your results";
+      progressBar.style.width = "100%";
+
+      resultHeadline.textContent =
+        `Your #1 match: ${trades[winner].name}`;
+
+      resultIntro.textContent =
+        trades[winner].description;
+
+      rankingsElement.innerHTML = "";
+
+      ranking.forEach((tradeKey, index) => {
+        const trade = trades[tradeKey];
+        const result = document.createElement("div");
+
+        result.className =
+          "ranking" + (index === 0 ? " primary" : "");
+
+        result.innerHTML = `
+          <div class="ranking-top">
+            <span class="rank">#${index + 1} match</span>
+            <span class="match">${percentages[tradeKey]}%</span>
+          </div>
+
+          <h4>${trade.icon} ${trade.name}</h4>
+
+          <p>
+            ${trade.subtitle}
+            ${index === 0 ? " — " + trade.description : ""}
+          </p>
+        `;
+
+        rankingsElement.appendChild(result);
+      });
+    }
+
+    restartButton.addEventListener("click", () => {
+      currentQuestion = 0;
+      selections = [];
+
+      resultsView.classList.remove("visible");
+      questionView.style.display = "block";
+
+      renderQuestion();
+    });
+
+    renderQuestion();
+  </script>
+</body>
+</html>
+```
